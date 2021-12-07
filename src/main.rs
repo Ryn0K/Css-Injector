@@ -24,12 +24,6 @@ use std::sync::RwLockReadGuard;
 use std::sync::RwLockWriteGuard;
 use url::Url;
 
-/// We need to return different futures depending on the route matched,
-/// and we can do that with an enum, such as `futures::Either`, or with
-/// trait objects.
-///
-/// A boxed Future (trait object) is used as it is easier to understand
-/// and extend with more types. Advanced users could switch to `Either`.
 type BoxFut = Box<dyn Future<Item = Response<Body>, Error = hyper::Error> + Send>;
 
 fn parse_query_params(req: &Request<Body>) -> HashMap<String, String> {
@@ -44,8 +38,6 @@ fn parse_query_params(req: &Request<Body>) -> HashMap<String, String> {
     params
 }
 
-/// This is our service handler. It receives a Request, routes on its
-/// path, and returns a Future of a Response.
 fn service_handler(req: Request<Body>, state: StateMap) -> BoxFut {
     let mut response = Response::new(Body::empty());
 
@@ -61,7 +53,6 @@ fn service_handler(req: Request<Body>, state: StateMap) -> BoxFut {
                 }
             };
 
-            // generate a unique id here
             let mut rng = rand::thread_rng();
             let _id: u32 = rng.gen();
 
@@ -115,7 +106,6 @@ fn service_handler(req: Request<Body>, state: StateMap) -> BoxFut {
             *response.body_mut() = Body::from("Successfully added new token state");
         }
 
-        // The 404 Not Found route...
         _ => {
             *response.status_mut() = StatusCode::NOT_FOUND;
         }
