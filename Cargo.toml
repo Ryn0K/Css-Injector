@@ -1,0 +1,12 @@
+[package]
+name = "cssi"
+version = "0.1.0"
+authors = ["Ryn0 <krnryn0@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+clap = "2.32.0"
+futures = "0.1.25"
+hyper = "0.12.25"
+rand = "0.6"
+url = "1.7.2"
