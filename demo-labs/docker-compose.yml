@@ -1,0 +1,10 @@
+version : "3.3"
+
+services:
+  app:
+    build: ./src/
+    environment:
+      SECRET_KEY: 'this_is_easy_key_so_set_it_according_to_your_need'
+    image: demo-labs-css-injection 
+    ports:
+      - "8886:5000"
