@@ -1,4 +1,4 @@
-# Cross site scripting Injector (CSSI)
+# Cross Site Script - Injector (CSSI)
 
 Tool to exfilterate tokens and nonces in websites, and can help to bypass client-side security.
 
